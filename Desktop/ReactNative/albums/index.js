@@ -2,12 +2,15 @@
 
 // Import a library to help create a component
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, View } from 'react-native';
 import Header from './src/components/header'; // ./ means to start from current directory
+import AlbumList from './src/components/AlbumList';
 // Create a component
  const App = () => (
-  <Header headerText={'ShoeJackCity'} />//Jsx code
-  //jsx tells react native what content we want t show on the screen
+   <View>
+  <Header headerText={'Albums'/*Jsx code*/} />
+  <AlbumList /*jsx tells react native what content we want t show on the screen*/ /> /
+   </View>
 );
 
 //Render it to device

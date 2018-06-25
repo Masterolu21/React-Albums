@@ -8,15 +8,15 @@ const Header = (props) => {
   const { textStyle, viewStyle } = styles;
   return (
   <View style={viewStyle}>
-    <Text style={textStyle}>{props.headerText}</Text>;
+    <Text style={textStyle}>{props.headerText}</Text>; 
   </View>
   );
 };
 
 const styles = {
   viewStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', //vertical
+    alignItems: 'center', //horizontal
     height: 60,
     paddingTop: 15,
     backgroundColor: '#F8F8F8',
