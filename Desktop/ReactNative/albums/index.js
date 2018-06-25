@@ -7,9 +7,9 @@ import Header from './src/components/header'; // ./ means to start from current 
 import AlbumList from './src/components/AlbumList';
 // Create a component
  const App = () => (
-   <View>
+   <View style={{ flex: 1 }}> /*prevents page from scrolling back up*/
   <Header headerText={'Albums'/*Jsx code*/} />
-  <AlbumList /*jsx tells react native what content we want t show on the screen*/ /> /
+  <AlbumList /*jsx tells react native what content we want t show on the screen*/ />
    </View>
 );
 
