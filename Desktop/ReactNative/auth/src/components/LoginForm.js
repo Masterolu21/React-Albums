@@ -14,13 +14,29 @@ class LoginForm extends Component {
     this.setState({ error: '', loading: true });/*if i fail to login once and
     attempt to login again the error message will clear out.*/
     firebase.auth().signInWithEmailAndPassword(email, password)
+    /*if they succesfully login we call onLoginSuccess which will clear out the form*/
+      .then(this.onLoginSuccess.bind(this))
+      /*if the user enters a correct email but a wrong password we will create a new account */
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
-          .catch(() => {
-            this.setState({ error: 'AuthenticationFailed. '});
-          });
+          .then(this.onLoginSuccess.bind(this))
+          .catch(this.onLoginFail.bind(this))
     });
   }
+onLoginFail() {
+  this.setState({ error: 'Authentication failed', loading: false })
+
+}
+
+onLoginSuccess(){
+  this.setState({
+    email: '', /*clears the value of email */
+    password: '', /*clears the value of password */
+    loading: false, /*clears the spinner*/
+    error: ''
+  });
+}
+
 renderButton(){
 
   if (this.state.loading) {
