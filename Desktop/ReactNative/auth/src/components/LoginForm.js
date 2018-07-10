@@ -5,7 +5,7 @@ import { Button, Card, CardSection, Input, Spinner } from './common';
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false }; //state is what we use to react to user events
-
+  //help defined our Input
   onButtonPress() {
     //this is a helper method
 
