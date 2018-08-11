@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ListView } from'react-native';
+import { ListView } from 'react-native';
 import { connect } from 'react-redux';
-
+import ListItem from './ListItem';
 
 class LibraryList extends Component {
   componentWillMount() {
@@ -10,17 +10,18 @@ class LibraryList extends Component {
     });
     this.dataSource = ds.cloneWithRows(this.props.libraries);
     /* ds is dataSource and it takes this list of libraries to render the screen*/
+    /*everything from roww 8 to row 14 is copy/pastable*/
 }
-  renderRow(){
-
+  renderRow(library){
+    /*returns a single library*/
+    return <ListItem library={library} />
   }
 
-  redner() {
+  render() {
     return (
       <ListView
-
         dataSource={this.dataSource}
-        rednerRow={this.renderRow}
+        renderRow={this.renderRow}
       />
     );
   }
@@ -30,7 +31,6 @@ const mapStateToProps = state => {
 and provide them as props*/
   return { libraries: state.libraries };
     /*reference to array of libraries*/
-  console.log(state);
 };
 
 export default connect(mapStateToProps)(LibraryList);
