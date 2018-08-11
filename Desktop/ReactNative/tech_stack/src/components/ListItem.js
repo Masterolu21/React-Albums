@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation
+} from 'react-native';
+
 import { connect } from 'react-redux';
 //allows us to get to redux and lets us call an action creator
 import { CardSection } from './common';
 import * as actions from '../actions';
 //i put .. because
-
 class ListItem extends Component {
-  renderDescription() {
-    const { library, selectedLibraryId } = this.props;
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
 
-    if (library.id === selectedLibraryId) {
+  renderDescription() {
+    const { library, expanded } = this.props;
+
+    if (expanded) {
       return (
-        <Text>{library.description}</Text>
+      <CardSection>
+        <Text style={{ flex: 1 }}>{library.description}</Text>
+      </CardSection>
   /*if referencing to a javascript variable wrap in curly braceletss*/
       );
     }
   }
   render() {
     const { titleStyle } = styles;
-    console.log(this.props);
     const { id, title } = this.props.library;
 
     return (
@@ -47,8 +57,11 @@ const styles = {
 
 };
 
-const mapStateToProps = state => {
-  return { selectedLibraryId: state.selectedLibraryId };
+const mapStateToProps = (state, ownProps) => {
+/* removes logic from main component */
+const expanded = state.selectedLibraryId === ownProps.library.id;
+
+  return { expanded };
 };
 export default connect(mapStateToProps, actions)(ListItem);
 //because we don't have any maps state to props the first object is null
