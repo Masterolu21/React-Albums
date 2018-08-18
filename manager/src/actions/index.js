@@ -35,12 +35,12 @@ export const loginUser = ({ email, password }) => {
   };
 };
 const loginUserFail = (dispatch) => {
-  dispatch({type: LOGIN_USER_FAIL});
+  dispatch({ type: LOGIN_USER_FAIL });
 };
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
     type: LOGIN_USER_SUCCESS,
-    payload:User
+    payload: user
   });
 };
